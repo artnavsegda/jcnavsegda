@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "config.h"
+#include <json-c/json.h>
 
 int main()
 {
