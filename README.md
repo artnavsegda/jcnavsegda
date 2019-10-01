@@ -1,2 +1,1 @@
-# jcnavsegda
-json-c playground projects
+# crossnavsegda
