@@ -3,7 +3,6 @@
 
 int main()
 {
-	printf(PACKAGE_STRING);
-	printf("\n");
+	printf("hello\n");
 	return 0;
 }
