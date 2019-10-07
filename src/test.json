@@ -1,11 +1,18 @@
 {
-  "one": {
-    "two": {
-      "three" : {
-        "name":"John",
-        "age":30,
-        "car":null
+  "nodeId":"0xXXXX",
+  "deviceState":1,
+  "deviceType":"1",
+  "timeSinceLastMessage":10,
+  "deviceEndpoint":
+  {
+    "eui64":"0xXXXXXXXXXXXXXXXX",
+    "endpoint":1,
+    "clusterInfo":
+    [
+      {
+        "clusterId":"0xXXXX",
+        "clusterType":"In"
       }
-    }
+    ]
   }
 }
