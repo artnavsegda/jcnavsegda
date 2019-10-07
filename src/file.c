@@ -21,7 +21,11 @@ int main()
     puts(json_object_to_json_string(val));
   }
 
-  puts(json_object_to_json_string(json_object_object_get(myobj,"name")));
+  json_object *name = NULL;
 
+  if (json_object_object_get_ex(myobj, "name", &name))
+  {
+    puts(json_object_to_json_string(name));
+  }
 	return 0;
 }

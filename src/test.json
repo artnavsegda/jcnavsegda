@@ -1,2 +1,11 @@
-{ "name":"John", "age":30, "car":null }
-
+{
+  "one": {
+    "two": {
+      "three" : {
+        "name":"John",
+        "age":30,
+        "car":null
+      }
+    }
+  }
+}
