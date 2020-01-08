@@ -1,1 +1,1 @@
-bin_PROGRAMS = hello file pointer test
+bin_PROGRAMS = test2
