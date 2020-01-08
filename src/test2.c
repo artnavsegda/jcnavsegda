@@ -5,6 +5,8 @@
 #include <fcntl.h>
 #include <json-c/json.h>
 #include <string.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 FILE * my_popen_read (char * command, char *envp[], int * pid)
 {
@@ -63,10 +65,20 @@ int main()
   puts(json_object_to_json_string(obj));
 
   char ** envp = envconv(obj);
-  int forkpid = 0;
+  int forkpid = 0, status;
   FILE *fp = my_popen_read("./test.sh", envp, &forkpid);
+  if (!fp)
+  {
+    emptyenv(envp);
+    return -1;
+  }
+
+  fclose(fp);
+  if (forkpid){
+    waitpid(forkpid, &status, 0);
+  }
 
   emptyenv(envp);
 
-  return 0;
+  return status;
 }
