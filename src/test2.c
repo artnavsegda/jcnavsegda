@@ -17,12 +17,12 @@ int main()
   char tmpstr[1000];
   json_object_object_foreach(obj, key, val)
   {
-    envp = realloc(&envp, sizeof(envp)*(i+1));
+    envp = realloc(envp, sizeof(envp)*(i+1));
     snprintf(tmpstr,1000,"__%s=%s",key,json_object_to_json_string(val));//check for leaks plz
     envp[i]=strdup(tmpstr);
     i++;
   }
-  envp = realloc(&envp, sizeof(envp)*(i+1));
+  envp = realloc(envp, sizeof(envp)*(i+1));
   envp[i]=NULL;
 
   return 0;
