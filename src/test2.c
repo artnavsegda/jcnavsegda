@@ -6,6 +6,28 @@
 #include <json-c/json.h>
 #include <string.h>
 
+FILE * my_popen_read (char * command, char *envp[], int * pid)
+{
+
+    char *argp[] = {"/bin/sh", "-c", command, NULL};
+    int fd[2];
+    int read_fd, write_fd;
+    pipe(fd);
+    read_fd = fd[0];
+    write_fd = fd[1];
+    *pid = fork();
+    if (*pid == 0) {
+        close(read_fd);
+        dup2(write_fd,1);
+        close(write_fd);
+        execve("/bin/sh",argp,envp);
+        return NULL;
+    } else {
+        close(write_fd);
+        return fdopen(read_fd, "r");
+    }
+}
+
 char ** envconv(json_object *obj)
 {
   int i = 0;
@@ -41,6 +63,8 @@ int main()
   puts(json_object_to_json_string(obj));
 
   char ** envp = envconv(obj);
+  int forkpid = 0;
+  FILE *fp = my_popen_read("./test.sh", envp, &forkpid);
 
   emptyenv(envp);
 
