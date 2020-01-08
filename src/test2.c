@@ -73,6 +73,11 @@ int main()
     return -1;
   }
 
+  char buffer[1000];
+
+  fread(buffer, 1000, 1, fp);
+  puts(buffer);
+
   fclose(fp);
   if (forkpid){
     waitpid(forkpid, &status, 0);
